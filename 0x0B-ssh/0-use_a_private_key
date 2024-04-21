@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#Write a Bash script that uses ssh to connect to server
+
+if [[ -e ~/.ssh/school ]] && [[ -s ~/.ssh/school ]] && [[ -f ~/.ssh/school ]]
+then
+	ssh -i ~/.ssh/school ubuntu@54.160.70.238
+
+fi
