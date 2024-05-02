@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# A Bash script that:
+# - Configure HAProxy to send traffic to web-01 and web-02
+# - Distribute requests using a roundrobin algorithm
+# - Make sure that HAProxy can be managed via an init script
+# Installing and configuring HAproxy on my lb-01 server
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+
+# Editing the HAProxy config file
+echo "
+frontend  wally_web-frontend
+        bind *:80
+        mode http
+        default_backend wally_web-backend
+backend wally_web-backend
+        balance roundrobin
+        server 140782-web-01 54.160.70.238:80 check
+        server 140782-web-02 52.205.81.67:80  check
+" >> /etc/haproxy/haproxy.cfg
+
+# Enabling the HAProxy to be started by init script
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+# Restarting the HAProxy service
+sudo service haproxy restart
