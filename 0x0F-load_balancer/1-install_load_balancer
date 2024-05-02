@@ -8,7 +8,8 @@ sudo apt-get -y update
 sudo apt-get -y install haproxy
 
 # Enabling the HAProxy to be started by init script
-sudo echo "ENABLED=1" > /etc/default/haproxy
+#sudo echo "ENABLED=1" > /etc/default/haproxy
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 # Editing the HAProxy config file
 echo "
