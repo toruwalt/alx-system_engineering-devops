@@ -7,6 +7,9 @@
 sudo apt-get -y update
 sudo apt-get -y install haproxy
 
+# Enabling the HAProxy to be started by init script
+sudo echo "ENABLED=1" > /etc/default/haproxy
+
 # Editing the HAProxy config file
 echo "
 frontend  wally_web-frontend
@@ -19,7 +22,5 @@ backend wally_web-backend
         server 140782-web-02 52.205.81.67:80  check
 " >> /etc/haproxy/haproxy.cfg
 
-# Enabling the HAProxy to be started by init script
-echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 # Restarting the HAProxy service
 sudo service haproxy restart
