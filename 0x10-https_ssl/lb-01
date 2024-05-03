@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+#Connecting to Load Balancer Server
+ssh -i ~/ALX/alx-system_engineering-devops/0x0B-ssh/0-RSA_public_key ubuntu@54.157.162.92
