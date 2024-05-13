@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+#Install and Configure Firewall(UFW)
+
 sudo apt-get install ufw
 sudo ufw status
 sudo ufw enable -y
