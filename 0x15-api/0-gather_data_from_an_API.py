@@ -7,13 +7,15 @@ if __name__ == "__main__":
     import json
 
     name = sys.argv[1]
-    num_task++;
+    total_task = 0
+    num_task = 0
+    com_task = []
 
     user = "https://jsonplaceholder.typicode.com/users/{}".format(name)
 
-#    response1 = requests.get(user)
-#    res1 = response1.json()
-#    user_Id = res1["id"]
+    response1 = requests.get(user)
+    res1 = response1.json()
+    user_Id = res1["id"]
 
     todo = "https://jsonplaceholder.typicode.com/todos/"
     response2 = requests.get(todo)
@@ -21,16 +23,23 @@ if __name__ == "__main__":
 
     if (response1 and response2):
 
-        print(res1)
-        print(res2)
-        #print("Employee {} is done with tasks".format(res1["name"]))
-        #print(userId)
+        for key in res2:
+            
+            if key["userId"] == user_Id:
+                total_task += 1
+                if key['completed'] == True:
+                    num_task += 1
+                    com_task.append(key['title'])
+                    #print("\t {}".format(key['title']))
 
-        for key, value in res2.items():
-            if key == userId and value == user_Id:
-                num_task++;
+        
+        print("Employee {} is done with tasks ({}/{}):".format(res1["name"], num_task, total_task))
 
-        #Employee EMPLOYEE_NAME is done with tasks(NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):EMPLOYEE_NAME: name of
+        for task in com_task:
+            completed_task = ""
+            completed_task = "\t {}".format(task)
+            print(completed_task)
+
     else:
         print(f"Error: {response.status_code}")
 
