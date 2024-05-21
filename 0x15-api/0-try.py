@@ -11,7 +11,7 @@ if __name__ == "__main__":
     nt = 0
     com_task = []
 
-    user = "https://jsonplaceholder.typicode.com/users/{}".format(name.json())
+    user = "https://jsonplaceholder.typicode.com/users/{}".format(name)
 
     response1 = requests.get(user)
     r1 = response1.json()
